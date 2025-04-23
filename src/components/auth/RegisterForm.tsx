@@ -5,9 +5,11 @@ import { Form, Input, Button, Select, Typography } from 'antd';
 
 type Props = {
     onSwitch: () => void;
+    registerSuccessful: () => void;
+    registerError: (error: any) => void;
 };
 
-export const RegisterForm = ({ onSwitch }: Props) => {
+export const RegisterForm = ({ onSwitch, registerSuccessful, registerError }: Props) => {
     const [form] = Form.useForm();
 
     const onFinish = async (values: any) => {
@@ -15,13 +17,16 @@ export const RegisterForm = ({ onSwitch }: Props) => {
             const res = await register(values.username, values.email, values.password, values.name, values.role);
             console.log("Registered:", res);
             // redirect or show success message
+            registerSuccessful();
+            onSwitch();
         } catch (err) {
+            registerError(err);
             console.error("Registration failed:", err);
         }
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6">s
             <Typography.Title level={3} className="!mb-4 text-center">
                 Register
             </Typography.Title>

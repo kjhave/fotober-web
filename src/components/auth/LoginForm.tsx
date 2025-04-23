@@ -1,13 +1,15 @@
 'use client';
 
 import { Form, Input, Button, Typography } from 'antd';
-import { login } from '../api/authFunctions/login';
+import { login } from '../../api/authFunctions/login';
 
 type Props = {
     onSwitch: () => void;
+    loginSuccessful: () => void;
+    loginError: (error: any) => void;
 };
 
-export const LoginForm = ({ onSwitch }: Props) => {
+export const LoginForm = ({ onSwitch, loginSuccessful, loginError }: Props) => {
     const [form] = Form.useForm();
 
     const onFinish = async (values: any) => {
@@ -15,8 +17,11 @@ export const LoginForm = ({ onSwitch }: Props) => {
             console.log('Logging in:', values);
             const result = await login(values.username, values.password);
             console.log('Login successful:', result);
+
+            loginSuccessful(); // Call the success callback
             // You can redirect or set user state here
         } catch (error) {
+            loginError(error); // Call the failure callback
             console.error('Login failed:', error);
         }
     };

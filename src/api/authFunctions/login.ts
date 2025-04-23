@@ -1,10 +1,16 @@
 export const login = async (username: string, password: string) => {
-    const res = await fetch("192.168.1.71:3000/authentication/login", {
+    if (!process.env.NEXT_PUBLIC_SERVER_URL) {
+        throw new Error("SERVER_URL is not defined in the environment variables.");
+    }
+
+    const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+    const res = await fetch(SERVER_URL+"/authentication/login", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password })
     });
 
     if (!res.ok) {
