@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Table, Modal, Button, Select, message } from 'antd';
-import { getAllTasks } from '@/api/taskFunctions/getAllTasks'; // API lấy tất cả task
-import { getStaffList } from '@/api/staffInforFunctions/getStaffList'; // API lấy danh sách staff
-import { updateTaskOperator } from '@/api/taskFunctions/updateTaskOperator'; // API cập nhật operator task
+import { getAllTasks } from '@/services/taskFunctions/getAllTasks'; // API lấy tất cả task
+import { getStaffList } from '@/services/staffInforFunctions/getStaffList'; // API lấy danh sách staff
+import { updateTaskOperator } from '@/services/taskFunctions/updateTaskOperator'; // API cập nhật operator task
 import Link from 'next/link';
 
 type Staff = {

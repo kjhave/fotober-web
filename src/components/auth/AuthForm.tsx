@@ -32,7 +32,7 @@ export const AuthForm = () => {
             content: 'Login successful!',
         });
 
-        router.push('/dashboard');
+        router.push('/editor');
     };
 
     const loginError = (error: any) => {

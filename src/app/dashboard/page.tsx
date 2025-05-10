@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import React, { useState, useEffect } from 'react';
 import StaffRanking from '../../components/dashboard/StaffRanking';
-import { getStaffList } from '@/api/staffInforFunctions/getStaffList';
+import { getStaffList } from '@/services/staffInforFunctions/getStaffList';
 import Link from 'next/link';
 import { Button } from 'antd';
 import { TaskForm } from '@/components/taskFunctions/TaskForm';

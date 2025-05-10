@@ -1,6 +1,6 @@
 'use client';
 
-import { register } from '@/api/authFunctions/register';
+import { register } from '@/services/authFunctions/register';
 import { Form, Input, Button, Select, Typography } from 'antd';
 
 type Props = {
@@ -16,7 +16,6 @@ export const RegisterForm = ({ onSwitch, registerSuccessful, registerError }: Pr
         try {
             const res = await register(values.username, values.email, values.password, values.name, values.role);
             console.log("Registered:", res);
-            // redirect or show success message
             registerSuccessful();
             onSwitch();
         } catch (err) {
@@ -47,6 +46,25 @@ export const RegisterForm = ({ onSwitch, registerSuccessful, registerError }: Pr
                 >
                     <Input.Password className="py-2" />
                 </Form.Item>
+
+                <Form.Item
+                    label="Confirm password"
+                    name="confirm password"
+                    rules={[
+                        { required: true },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue('password') === value) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(new Error('Passwords do not match'));
+                            }
+                        })
+                    ]}
+                >
+                    <Input.Password className="py-2" />
+                </Form.Item>
+
 
                 <Form.Item
                     label="Email"
