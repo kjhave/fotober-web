@@ -1,10 +1,10 @@
+// src/components/auth/AuthForm.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
 import { message } from 'antd';
-import { useRouter } from 'next/navigation';
 
 export const AuthForm = () => {
     const [isRegistering, setIsRegistering] = useState(false);
@@ -25,14 +25,11 @@ export const AuthForm = () => {
         });
     };
 
-    const router = useRouter();
     const loginSuccessful = () => {
         messageApi.open({
             type: 'success',
             content: 'Login successful!',
         });
-
-        router.push('/editor');
     };
 
     const loginError = (error: any) => {

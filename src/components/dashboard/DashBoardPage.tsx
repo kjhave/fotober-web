@@ -1,3 +1,4 @@
+// File: src/app/dashboard/page.tsx
 'use client';
 
 import { cookies } from 'next/headers';
@@ -7,6 +8,7 @@ import { getStaffList } from '@/services/staffInforFunctions/getStaffList';
 import Link from 'next/link';
 import { Button } from 'antd';
 import { TaskForm } from '@/components/taskFunctions/TaskForm';
+import { logout } from '@/services/authFunctions/logout';
 
 
 type Staff = {
@@ -88,10 +90,8 @@ export default function DashboardPage() {
                             Tạo yêu cầu mới
                         </Button>
 
-                        <Button block>
-                            <Link href="/">
+                        <Button block onClick={logout}>
                                 Đăng Xuất
-                            </Link>
                         </Button>
                     </nav>
                 </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { createTask } from '@/services/taskFunctions/createTask';
+import { createTask } from '@/services/taskFunctions';
 import { Form, Input, Button, Select, Checkbox, message, Tooltip } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 

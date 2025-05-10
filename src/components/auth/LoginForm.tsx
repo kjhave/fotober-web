@@ -5,7 +5,7 @@ import { login } from '../../services/authFunctions/login';
 
 type Props = {
     onSwitch: () => void;
-    loginSuccessful: () => void;
+    loginSuccessful: (token: string) => void;  // Nhận token từ callback
     loginError: (error: any) => void;
 };
 
@@ -18,7 +18,7 @@ export const LoginForm = ({ onSwitch, loginSuccessful, loginError }: Props) => {
             const result = await login(values.username, values.password);
             console.log('Login successful:', result);
 
-            loginSuccessful();
+            loginSuccessful(result.token);  // Truyền token vào loginSuccessful
 
         } catch (error) {
             loginError(error);
