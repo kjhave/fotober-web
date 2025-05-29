@@ -1,1 +1,1 @@
-export * from './taskFunctions';
+export * from './authFunctions';
